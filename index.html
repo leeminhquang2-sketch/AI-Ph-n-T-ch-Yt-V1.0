@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Channel Analyzer - AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2">
+                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.54c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/>
+                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#FF0000"/>
+                </svg>
+                <h1>YouTube Analyzer <span class="badge">AI</span></h1>
+            </div>
+            <p class="subtitle">Phân tích kênh YouTube thông minh bằng AI</p>
+        </div>
+
+        <!-- Form nhập liệu -->
+        <div class="form-card">
+            <div class="form-group">
+                <label for="apiKey">🔑 YouTube API Key</label>
+                <input type="password" id="apiKey" placeholder="Nhập API Key của bạn..." required>
+                <small>Lấy tại <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a></small>
+            </div>
+
+            <div class="form-group">
+                <label for="channelId">📺 Channel ID</label>
+                <input type="text" id="channelId" placeholder="Ví dụ: UCX6OQ3DkcsbYNE6H8uQQuVA" required>
+                <small>Lấy từ URL kênh YouTube</small>
+            </div>
+
+            <button id="analyzeBtn" onclick="analyzeChannel()">
+                <span id="btnText">🚀 Phân tích ngay</span>
+                <div id="btnSpinner" class="spinner" style="display: none;"></div>
+            </button>
+        </div>
+
+        <!-- Kết quả -->
+        <div id="result" style="display: none;">
+            <!-- Thông tin kênh -->
+            <div class="channel-header" id="channelHeader">
+                <img id="avatar" src="" alt="Avatar">
+                <div class="channel-info">
+                    <h2 id="channelName">Tên kênh</h2>
+                    <p id="channelStats"></p>
+                </div>
+            </div>
+
+            <!-- Điểm số -->
+            <div class="score-card" id="scoreCard">
+                <div class="score-circle">
+                    <span id="scoreNumber">0</span>
+                    <span>/10</span>
+                </div>
+                <div class="score-label">
+                    <h3 id="scoreLabel">Điểm sức khỏe</h3>
+                    <p id="scoreDesc">Đánh giá tổng quan</p>
+                </div>
+            </div>
+
+            <!-- Thông số chi tiết -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-item">
+                    <span class="stat-label">👥 Subscriber</span>
+                    <span class="stat-value" id="subCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">👀 Tổng view</span>
+                    <span class="stat-value" id="viewCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">📹 Số video</span>
+                    <span class="stat-value" id="videoCount">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">📅 Ngày tạo</span>
+                    <span class="stat-value" id="createdDate">0</span>
+                </div>
+            </div>
+
+            <!-- Tỷ lệ đề xuất (ước lượng) -->
+            <div class="metric-card">
+                <h3>📊 Tỷ lệ đề xuất (ước lượng)</h3>
+                <div class="progress-bar">
+                    <div id="suggestedBar" class="progress-fill" style="width: 0%;"></div>
+                </div>
+                <p id="suggestedText">Đang tính toán...</p>
+            </div>
+
+            <!-- Phân tích AI -->
+            <div class="analysis-card">
+                <h3>🧠 Phân tích & Đánh giá AI</h3>
+                <div id="aiAnalysis">
+                    <ul id="feedbackList"></ul>
+                </div>
+            </div>
+
+            <!-- Đề xuất cải thiện -->
+            <div class="improve-card">
+                <h3>💡 Đề xuất cải thiện</h3>
+                <ul id="improveList"></ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Made with ❤️ | Dữ liệu từ YouTube Data API v3</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
